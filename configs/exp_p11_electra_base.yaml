@@ -1,0 +1,17 @@
+extends: base.yaml
+exp_name: p11_electra_base
+# Phase 16 / N2 — official-only structural diversity member
+# 動機：v12/v15 已由 macbert-base family + bert/roberta + macbert-large 組成；
+#       下一個成員應避免 combo_v3 細修，改走不同預訓練目標。
+#       ELECTRA 以 replaced-token detection 預訓練，和 MLM-family backbone 錯誤模式較可能互補。
+# 資料：只使用官方人工標註 1,000 筆；不使用 U10 或任何外部 pseudo-label。
+# Gate：先看單模 OOF 是否 >= 0.65；若 T2/T4 或 post-constraint joint admission 有互補，再納入下一版 ensemble。
+model:
+  backbone: hfl/chinese-electra-180g-base-discriminator
+  max_length: 384
+training:
+  lr: 2.0e-5
+  use_class_weight: false
+  batch_size: 8
+  grad_accum: 2
+seeds: [42]

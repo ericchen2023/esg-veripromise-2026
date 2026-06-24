@@ -1,0 +1,14 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_u10_pseudo_v3
+# Phase 34 (§F path 3) — M4-v3 pseudo-labeling on the M3-v3 corpus
+# (data/processed/u10/pseudo_labels_v3.csv, expected size > v2's 3,904 rows).
+# Strategy mirrors u10_pseudo_v2: two-stage K-Fold, official rows used for
+# validation/OOF only, pseudo rows admitted at min_confidence>=0.45 to keep
+# Tier-2 minority-boost rows.
+data:
+  pseudo_csv_path: data/processed/u10/pseudo_labels_v3.csv
+pseudo:
+  min_confidence: 0.45
+  max_pseudo: 3000
+  stage_a_epochs: 4
+  stage_b_epochs: 3

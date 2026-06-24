@@ -1,0 +1,27 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p55_tapt_electralarge
+# Phase 53 — binary-specialist pool, member C: TAPT + electra-180g-large.
+# ELECTRA's discriminative (replaced-token-detection) pretraining is often
+# strong on binary classification, and it is architecturally distinct from both
+# macbert and roberta — exactly the structural diversity an ensemble needs.
+# Phase 48 ran electra-large WITHOUT TAPT (T4-focused) and it underperformed;
+# here it is domain-adapted first and aimed at the binary tasks.
+#
+# 8 GB-safe identical recipe to p54. If VRAM is tight, drop max_length to 224.
+#
+# Requires: scripts/u30_tapt_pretrain --backbone hfl/chinese-electra-180g-large-discriminator
+#           --out-dir outputs/tapt/electra_large_esg
+model:
+  backbone: outputs/tapt/electra_large_esg
+  max_length: 256
+  pooling: cls_mean
+data:
+  csv_path: data/processed/train_val_combined.csv
+training:
+  lr: 1.0e-5               # electra-large is lr-sensitive; Phase 48 p16 used 1.0e-5
+  batch_size: 2
+  grad_accum: 8
+  epochs: 5
+  early_stop_patience: 2
+  use_class_weight: false
+seeds: [42]

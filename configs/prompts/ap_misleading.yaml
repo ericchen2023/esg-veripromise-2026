@@ -1,0 +1,54 @@
+# Aug-Plus prompt template: T4=Misleading minority-class generation.
+#
+# Loaded by scripts/ap_llm_synth.py.  The 'fewshot' block is rendered into
+# the system / user prompt with simple {placeholder} substitution.
+
+target:
+  label: "T4_Misleading"
+  description: |
+    A realistic Traditional-Chinese ESG-disclosure passage where the company
+    makes a concrete promise (T1=Yes) with an explicit timeline (T2 != N/A),
+    cites some evidence (T3=Yes), BUT the evidence is irrelevant, vague,
+    or tangential to the promise -- thus T4=Misleading.
+
+system_prompt: |
+  You are an expert annotator producing synthetic Traditional-Chinese ESG
+  disclosure passages for a research dataset on greenwashing detection.
+
+  Each sample must satisfy ALL of these labels:
+    promise_status         = "Yes"
+    verification_timeline  = one of {within_2_years, between_2_and_5_years, longer_than_5_years}
+    evidence_status        = "Yes"
+    evidence_quality       = "Misleading"
+
+  "Misleading" means the evidence cited DOES exist as a statement, but it
+  does NOT meaningfully substantiate the specific promise. Common patterns:
+    1. Promise is a quantitative target; evidence is an unrelated award.
+    2. Promise is a specific metric; evidence is a generic statement of values.
+    3. Promise is a large-scale outcome; evidence is a tiny pilot project.
+    4. Promise cites a future year; evidence cites unrelated current actions.
+
+  Output ONLY valid JSON, one object per line (JSONL), with keys:
+    {"data", "promise_string", "evidence_string", "verification_timeline"}
+  No prose outside JSON. No code fences.
+
+fewshot:
+  - data: "本公司承諾於2030年達成範疇一及範疇二溫室氣體淨零排放，集團已連續五年榮獲台灣企業永續獎金獎，並積極參與多項環保公益活動。"
+    promise_string: "承諾於2030年達成範疇一及範疇二溫室氣體淨零排放"
+    evidence_string: "集團已連續五年榮獲台灣企業永續獎金獎，並積極參與多項環保公益活動"
+    verification_timeline: "between_2_and_5_years"
+  - data: "公司計畫於2027年底前全面使用再生能源，目前已於屏東廠導入太陽能板示範案，可滿足該廠約5%電力需求。"
+    promise_string: "計畫於2027年底前全面使用再生能源"
+    evidence_string: "於屏東廠導入太陽能板示範案，可滿足該廠約5%電力需求"
+    verification_timeline: "within_2_years"
+  - data: "本公司目標2032年生物多樣性正向影響面積達1,000公頃，公司長期支持地方造林活動，董事長親自參與多場植樹典禮。"
+    promise_string: "目標2032年生物多樣性正向影響面積達1,000公頃"
+    evidence_string: "公司長期支持地方造林活動，董事長親自參與多場植樹典禮"
+    verification_timeline: "longer_than_5_years"
+
+user_prompt_template: |
+  請依照系統提示，產生 {n} 則新的 Traditional-Chinese ESG 揭露段落，
+  每則皆需符合 T4=Misleading 的標註定義（承諾具體、證據空泛或無關）。
+  涵蓋不同產業（製造、金融、零售、科技、運輸、食品）與不同議題類別
+  （減碳、再生能源、循環經濟、性別平等、人權、供應鏈、職安、董事會）。
+  請以 JSONL 輸出 {n} 行，不可重覆已有的 fewshot 內容。

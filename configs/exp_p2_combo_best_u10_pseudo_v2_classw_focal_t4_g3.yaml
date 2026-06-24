@@ -1,0 +1,11 @@
+extends: exp_p2_combo_best_u10_pseudo_v2.yaml
+exp_name: p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3
+# Phase 33 (§F path 2) — Class-weighted CE on T1/T2/T3 + Focal γ=3.0 on T4,
+# trained on the U10 v2 pseudo-labelled corpus (3,904 admitted rows).
+# Goal: rescue within_2_years (T2) / Misleading (T4) macro-F1 that the v2
+# stack lost (see §40.8 structural-residual analysis).
+# Inherits all other settings: lr=3e-5, max_len=384, bs=8/ga=2, 5 folds, 3 seeds.
+training:
+  use_class_weight: true
+  focal_tasks: [evidence_quality]
+  focal_gamma: 3.0

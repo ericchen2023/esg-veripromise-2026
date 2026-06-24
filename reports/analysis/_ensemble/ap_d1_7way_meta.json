@@ -1,0 +1,64 @@
+{
+  "exps": [
+    "p2_combo_best",
+    "p2_combo_best_u10_pseudo",
+    "p2_combo_best_u10_pseudo_v2",
+    "p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3",
+    "p2_combo_best_u10_pseudo_v3_classw_focal_t4_g3",
+    "p2_combo_best_classw_focal_u6pro",
+    "p2_combo_best_aug_plus"
+  ],
+  "grid_step": 0.1,
+  "equal_score": 0.6869563740139264,
+  "equal_per_task": {
+    "promise_status": 0.937873357228196,
+    "verification_timeline": 0.5615407598192146,
+    "evidence_status": 0.868402533427164,
+    "evidence_quality": 0.4417995101921597
+  },
+  "final_score": 0.7110885089900456,
+  "final_per_task": {
+    "promise_status": 0.9420989143546441,
+    "verification_timeline": 0.6268986539719485,
+    "evidence_status": 0.8801128349788434,
+    "evidence_quality": 0.47028593579906136
+  },
+  "best_weights_per_task": {
+    "promise_status": [
+      0.0,
+      0.1,
+      0.0,
+      0.0,
+      0.5,
+      0.3,
+      0.1
+    ],
+    "verification_timeline": [
+      0.1,
+      0.1,
+      0.0,
+      0.4,
+      0.3,
+      0.1,
+      0.0
+    ],
+    "evidence_status": [
+      0.3,
+      0.2,
+      0.3,
+      0.0,
+      0.1,
+      0.0,
+      0.1
+    ],
+    "evidence_quality": [
+      0.0,
+      0.0,
+      0.1,
+      0.1,
+      0.3,
+      0.2,
+      0.3
+    ]
+  }
+}

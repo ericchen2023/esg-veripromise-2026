@@ -1,0 +1,14 @@
+extends: base.yaml
+exp_name: p4a_roberta_wwm_base
+# Sprint A T1: extend backbone pool — chinese-roberta-wwm-ext (base size, 102M)
+# 繼承 combo_best 最佳超參 (lr=3e-5, no class weight, max_len=384)
+# 單 seed=42 以節省 GPU 時間；確認單模 ≥ 0.65 即加入 ensemble pool
+model:
+  backbone: hfl/chinese-roberta-wwm-ext
+  max_length: 384
+training:
+  lr: 3.0e-5
+  use_class_weight: false
+  batch_size: 8
+  grad_accum: 2
+seeds: [42]

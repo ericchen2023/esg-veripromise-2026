@@ -1,0 +1,8 @@
+extends: exp_p2_combo_best_aug_plus_v2.yaml
+exp_name: p2_combo_best_aug_plus_v2_tv
+# Phase 41 — retrain on combined train+val (≈2000 rows) for final submission.
+# Aug-Plus v2 (159 AP rows incl. misleading/within_2y LLM-synth) + U10 v2 pseudo
+# + U6-pro BT pool, class-weighted + Focal γ=3.0 (T4).
+seeds: [42]
+data:
+  csv_path: data/processed/train_val_combined.csv

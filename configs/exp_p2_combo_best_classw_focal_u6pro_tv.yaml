@@ -1,0 +1,7 @@
+extends: exp_p2_combo_best_classw_focal_u6pro.yaml
+exp_name: p2_combo_best_classw_focal_u6pro_tv
+# Phase 41 — retrain on combined train+val (≈2000 rows) for final submission.
+# Class-weighted CE + Focal γ=3.0 + U10 v2 pseudo + U6-pro back-translation pool.
+seeds: [42]
+data:
+  csv_path: data/processed/train_val_combined.csv

@@ -1,0 +1,8 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_resample_t4
+# U5 / B2 — T4 (evidence_quality) class-balanced re-sampling
+# alpha=0.5 uses sqrt-inverse-frequency, mild rebalance (full inverse 1.0 risks
+# over-amplifying singleton 'Misleading' class).
+training:
+  resample_t4: 0.5
+seeds: [42]

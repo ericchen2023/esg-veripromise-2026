@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2t_epochs7
+training:
+  epochs: 7
+seeds: [42]

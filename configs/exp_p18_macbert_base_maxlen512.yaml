@@ -1,0 +1,15 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p18_macbert_base_maxlen512
+# Phase 48 iteration 3 (MASTER_PLAN 58.13). p15 (roberta-large) and p16
+# (electra-large) BOTH failed the T4 admission gate — larger models overfit the
+# tiny 4-class T4 (~800 train samples). Size is the wrong axis.
+#
+# p18 isolates the ONE remaining transferable-task hypothesis: does longer
+# context (maxlen 384->512) capture more T4 evidence (40% of test rows exceed
+# 384 tokens)? Same WINNING backbone (macbert-base) + same combo_best recipe,
+# ONLY maxlen changes. No large-model overfit confound. Cached, no download.
+data:
+  csv_path: data/processed/train_val_combined.csv   # combined 2000 for OOF alignment
+model:
+  max_length: 512
+seeds: [42]

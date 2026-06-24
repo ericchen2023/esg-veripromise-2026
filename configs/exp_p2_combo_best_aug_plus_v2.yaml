@@ -1,0 +1,23 @@
+extends: exp_p2_combo_best_aug_plus.yaml
+exp_name: p2_combo_best_aug_plus_v2
+# Aug-Plus v2 — Phase 38（2026-05-20）
+# 在 stem #7 (aug_plus v1, 47 handcrafted rows) 之上額外加入 Ollama
+# qwen2.5:7b-instruct 本機生成的 140 列 LLM-synth：
+#   misleading      = 80 列（temperature=0.85, top_p=0.92, seed=42）
+#   within_2_years  = 60 列（同上）
+# 經 SimHash dedup + length filter 後保留 159 列總 AP 池，
+# 再與 U10 v2 偽標 3,904 列合併 → 4,063 列訓練語料。
+#
+# 產線（端到端，需 Ollama 服務在 localhost:11434）：
+#   export OLLAMA_MODEL=qwen2.5:7b-instruct
+#   python scripts/ap_llm_synth.py generate --target misleading      --n 80 --provider ollama --seed 42
+#   python scripts/ap_llm_synth.py generate --target within_2_years  --n 60 --provider ollama --seed 42
+#   python scripts/ap_llm_synth.py validate --target misleading
+#   python scripts/ap_llm_synth.py validate --target within_2_years
+#   python scripts/ap_llm_synth.py merge --out data/aug_plus/aug_merged_raw.csv
+#   python scripts/ap_quality_gate.py --in data/aug_plus/aug_merged_raw.csv \
+#       --out data/aug_plus/aug_gated.csv --train-csv 'vpesg4k_train_1000 V1.csv' --skip-teacher
+#   python scripts/ap_llm_synth.py promote --gated-csv data/aug_plus/aug_gated.csv --with-u10
+#   # 將產出的 aug_plus_v1_with_u10v2.csv 複製為 aug_plus_v2_with_u10v2.csv，再跑此 yaml
+data:
+  pseudo_csv_path: data/processed/aug_plus/aug_plus_v2_with_u10v2.csv

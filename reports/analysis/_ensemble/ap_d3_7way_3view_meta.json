@@ -1,0 +1,114 @@
+{
+  "stems": [
+    "p2_combo_best",
+    "p2_combo_best_u10_pseudo",
+    "p2_combo_best_u10_pseudo_v2",
+    "p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3",
+    "p2_combo_best_u10_pseudo_v3_classw_focal_t4_g3",
+    "p2_combo_best_classw_focal_u6pro",
+    "p2_combo_best_aug_plus"
+  ],
+  "ref_scores": {
+    "u10_stack_stored_only": {
+      "promise_status": 0.937873357228196,
+      "verification_timeline": 0.5615407598192146,
+      "evidence_status": 0.868402533427164,
+      "evidence_quality": 0.4417995101921597,
+      "final_weighted_score": 0.6869563740139264
+    },
+    "u10_stack_stored_middle": {
+      "promise_status": 0.9385074626865672,
+      "verification_timeline": 0.5622514325838128,
+      "evidence_status": 0.869198312236287,
+      "evidence_quality": 0.44233915169913146,
+      "final_weighted_score": 0.6876174041904675
+    },
+    "u10_stack_stored_tail": {
+      "promise_status": 0.9385074626865672,
+      "verification_timeline": 0.5635375482451103,
+      "evidence_status": 0.868402533427164,
+      "evidence_quality": 0.4417995101921597,
+      "final_weighted_score": 0.687382713369485
+    },
+    "u10_stack_three_eq": {
+      "promise_status": 0.9385074626865672,
+      "verification_timeline": 0.5631953753783387,
+      "evidence_status": 0.869198312236287,
+      "evidence_quality": 0.4417650376884005,
+      "final_weighted_score": 0.6875580557058905
+    }
+  },
+  "stem_star": {
+    "promise_status": [
+      0.0,
+      0.1,
+      0.0,
+      0.0,
+      0.5,
+      0.3,
+      0.1
+    ],
+    "verification_timeline": [
+      0.0,
+      0.1,
+      0.0,
+      0.5,
+      0.2,
+      0.1,
+      0.1
+    ],
+    "evidence_status": [
+      0.0,
+      0.4,
+      0.3,
+      0.0,
+      0.0,
+      0.2,
+      0.1
+    ],
+    "evidence_quality": [
+      0.1,
+      0.1,
+      0.0,
+      0.3,
+      0.0,
+      0.2,
+      0.3
+    ]
+  },
+  "alpha_star": {
+    "promise_status": [
+      0.5,
+      0.5,
+      0.0
+    ],
+    "verification_timeline": [
+      0.4,
+      0.2,
+      0.4
+    ],
+    "evidence_status": [
+      0.1,
+      0.9,
+      0.0
+    ],
+    "evidence_quality": [
+      0.3,
+      0.0,
+      0.7
+    ]
+  },
+  "final_score": {
+    "promise_status": 0.9433734939759036,
+    "verification_timeline": 0.6306126793742892,
+    "evidence_status": 0.8804500703234881,
+    "evidence_quality": 0.474959931988209,
+    "final_weighted_score": 0.7136375979942436
+  },
+  "u10_stack_baseline": 0.6869563740139264,
+  "delta_vs_u10_stack": 0.026681223980317248,
+  "delta_vs_active_SOTA": 0.024387597994243615,
+  "grid_step": 0.1,
+  "max_rounds": 4,
+  "joint_rounds": 2
+}

@@ -1,0 +1,30 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p54_tapt_robertalarge
+# Phase 53 — binary-specialist pool, member B: TAPT + roberta-wwm-ext-large.
+# The genuinely-new axis: Phase 48 ran roberta-large WITHOUT TAPT and it
+# overfit the tiny data; large + domain-adaptive TAPT was never tried. Target is
+# the BINARY decision boundary (T1/T3, combined weight 0.50), the only place
+# with measured recoverable LB headroom (Phase 52). Bigger capacity + ESG-
+# adapted MLM may sharpen the Yes/No boundary where macbert-base saturates.
+#
+# 8 GB-safe: batch 2 + grad_accum 8 (effective 16, matches combo_best). Unlike
+# the Phase 48 T4 config this uses max_length 256 (binary signal sits in the
+# promise/evidence phrasing, not the paragraph tail) and NO focal (focal has
+# always hurt this project), making it ~2x cheaper than the p15 T4 config.
+#
+# Requires: scripts/u30_tapt_pretrain --backbone hfl/chinese-roberta-wwm-ext-large
+#           --out-dir outputs/tapt/roberta_large_esg
+model:
+  backbone: outputs/tapt/roberta_large_esg
+  max_length: 256
+  pooling: cls_mean
+data:
+  csv_path: data/processed/train_val_combined.csv
+training:
+  lr: 1.5e-5
+  batch_size: 2
+  grad_accum: 8
+  epochs: 5
+  early_stop_patience: 2
+  use_class_weight: false
+seeds: [42]

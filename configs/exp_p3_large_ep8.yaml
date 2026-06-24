@@ -1,0 +1,14 @@
+extends: base.yaml
+exp_name: p3_large_ep8
+model:
+  backbone: hfl/chinese-macbert-large
+  max_length: 384
+  pooling: cls_mean
+training:
+  lr: 1.0e-5
+  use_class_weight: false
+  batch_size: 4
+  grad_accum: 4
+  epochs: 8
+  early_stop_patience: 3
+seeds: [42]

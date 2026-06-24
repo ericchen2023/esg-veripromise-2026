@@ -1,0 +1,15 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p56_combo_best_notclear
+# Phase 55 — T4 'Not Clear'-targeted augmentation. Identical recipe to the
+# baseline combo_best TV stem (so the comparison is apples-to-apples), trained on
+# the combined 2000-row set, with ~220 LLM-generated Not Clear evidence
+# paragraphs injected leak-free via augment_path (each carries _source_id of a
+# real Not Clear row, so src/train_kfold injects it only into folds where that
+# source is in train -> the val-slice OOF stays an honest transfer test).
+#
+# Success criterion (validate before any upload): val-slice (rows 1000-1999)
+# Not Clear F1 and T4 macro-F1 must improve vs the baseline combo_best stem.
+data:
+  csv_path: data/processed/train_val_combined.csv
+  augment_path: data/aug_plus/notclear_synth.json
+seeds: [42]

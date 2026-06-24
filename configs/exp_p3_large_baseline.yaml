@@ -1,0 +1,15 @@
+extends: base.yaml
+exp_name: p3_large_baseline
+# Phase 3 真正升規模：macbert-large (326M) + Phase 2 winners stack
+model:
+  backbone: hfl/chinese-macbert-large
+  max_length: 384
+  pooling: cls_mean
+training:
+  lr: 1.5e-5            # large 通常需更小 lr (base 0.5x)
+  use_class_weight: false
+  batch_size: 4
+  grad_accum: 4         # effective batch = 16，等同 base
+  epochs: 5
+  early_stop_patience: 2
+seeds: [42]             # 先 1 seed 確認 VRAM/收斂；通過後再 [2024, 20260417]

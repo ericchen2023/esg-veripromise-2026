@@ -1,0 +1,15 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p53_tapt_macbert_ms
+# Phase 57 (extra-day) -- two MORE macbert-TAPT seeds to extend the T1 ensemble
+# from 7 to 9 members. The winning LB trajectory was monotonic in T1 seed count
+# (3->5->7 => 0.6176->0.6195->0.6218); T1 is the cascade master, so each added
+# seed sharpens promise=No and lifts T2/T3/T4 via the N/A rule. exp_name is kept
+# at p53_tapt_macbert_ms so checkpoints land beside the existing 7 seeds and the
+# u35 BINARY_POOL / u46 npz naming (p53_tapt_macbert_s{seed}_test_probs.npz) match
+# index-for-index with the banked pool. Seeds 33/2025 are disjoint from the
+# existing {42,2024,20260417,7,777,11,22}.
+model:
+  backbone: outputs/tapt/macbert_esg   # produced by scripts/u30_tapt_pretrain
+data:
+  csv_path: data/processed/train_val_combined.csv
+seeds: [33, 2025]

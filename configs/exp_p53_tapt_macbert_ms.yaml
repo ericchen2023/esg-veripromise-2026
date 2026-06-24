@@ -1,0 +1,16 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p53_tapt_macbert_ms
+# Phase 53 — binary-specialist pool, member A: multi-seed TAPT macbert.
+# Phase 52 proved TAPT improves the TEST binary tasks (T1 +0.0103, T3 +0.0054)
+# and that binary IS improvable (the earlier "irreducible" verdict was an
+# OOF-validation failure, not a true ceiling). The cheapest diversity is extra
+# seeds of the already-domain-adapted macbert encoder (Phase 49 trained seed 42
+# only). These two seeds + p49 seed42 = a 3-member TAPT-macbert binary pool.
+#
+# CRITICAL: train on the combined 2000-row set so the 5-fold OOF + test
+# inference align index-for-index with the existing _tv / TAPT pool.
+model:
+  backbone: outputs/tapt/macbert_esg   # produced by scripts/u30_tapt_pretrain
+data:
+  csv_path: data/processed/train_val_combined.csv
+seeds: [2024, 20260417]

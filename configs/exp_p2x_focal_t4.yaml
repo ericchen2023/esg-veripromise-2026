@@ -1,0 +1,6 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2x_focal_t4
+training:
+  focal_tasks: [evidence_quality]
+  focal_gamma: 2.0
+seeds: [42]

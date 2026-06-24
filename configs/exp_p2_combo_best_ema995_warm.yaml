@@ -1,0 +1,12 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_ema995_warm
+# U2 / B3 — EMA decay=0.995 with 2-epoch warm-start (5-epoch total → EMA tracks
+# epochs 3,4,5 = ~300 steps post-warmup).
+# Phase 5 ema999 (no warm-start) collapsed to 0.473 because shadow weights
+# never caught up in ~500 steps. This config delays EMA tracking until epoch 3
+# so shadow only averages converged weights. Single seed=42; admission via
+# member-level OOF (≥ baseline + 0.0005).
+training:
+  ema_decay: 0.995
+  ema_warmup_epochs: 2
+seeds: [42]

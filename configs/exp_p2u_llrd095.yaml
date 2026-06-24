@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2u_llrd095
+training:
+  llrd_decay: 0.95
+seeds: [42]

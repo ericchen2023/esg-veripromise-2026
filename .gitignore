@@ -1,0 +1,115 @@
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+env/
+
+# =============================================================================
+# Jupyter
+# =============================================================================
+.ipynb_checkpoints/
+
+# =============================================================================
+# IDE / OS
+# =============================================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =============================================================================
+# Test / lint cache
+# =============================================================================
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# =============================================================================
+# Heavy artifacts (NOT pushed to GitHub)
+#   outputs/checkpoints  ~ 188 GB (6 stems x 3 seeds x 5 folds best.pt)
+#   outputs/cache        ~  2 MB cached per-view OOF tensors
+#
+# NOTE: patterns are anchored to repo root with leading '/' so that
+#       src/data/ (Python package) is NOT swept by `data/`.
+# =============================================================================
+/outputs/
+/checkpoints/
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+
+# Cached intermediate matrices
+/.cache/
+*.npz
+*.parquet
+*.pkl
+
+# =============================================================================
+# Runtime logs (regenerable)
+# =============================================================================
+/logs/
+*.log
+*.jsonl
+
+# =============================================================================
+# Data
+#   The official 1,000-sample dataset (vpesg4k_train_1000 V1.csv / .json) at
+#   repo root IS tracked because the competition organiser releases it publicly.
+#
+#   Everything else inside /data/ is local-only:
+#     - data/raw/         (1.3 GB sustainability-report PDFs from public sources)
+#     - data/processed/   (pseudo-label CSVs, U10 corpus, U6-pro back-translation)
+#     - data/splits/      (per-stem K-Fold index files; regenerable from seeds)
+#
+#   Leading '/' anchors to repo root so src/data/ (Python package) is NOT ignored.
+# =============================================================================
+/data/
+
+# =============================================================================
+# Reports — keep only EDA images + final analysis markdown.
+# Everything else is per-run experiment dumps that bloat the repo.
+# =============================================================================
+/reports/logs/
+/reports/runs/
+/reports/experiments/
+/reports/analysis/
+/reports/u6/
+/reports/eda/*.html
+
+# =============================================================================
+# Submissions / scratch
+# =============================================================================
+/outputs/submissions/
+/scratch/
+*.bak
+*.bak.md
+TODO.local.md
+
+# =============================================================================
+# Scraping intermediates (HTML probes from MOPS / sustainability portals)
+# =============================================================================
+scripts/_mops_pages/
+scripts/_mops_probe2/
+scripts/_*_probe*/
+scripts/_*_pages/
+
+# Personal, machine-local Claude Code permission allowlist (not shared)
+.claude/settings.local.json
+
+# Official val/test data (released to participants only) — never publish to a
+# public repo while the competition is live. Train (vpesg4k_train_1000) stays
+# tracked as before. Added 2026-06-14.
+/vpesg4k_val_1000.csv
+/vpesg4k_val_1000.json
+/vpesg4k_test_2000.csv
+/vpesg4k_test_2000.json

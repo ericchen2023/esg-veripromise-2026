@@ -1,0 +1,6 @@
+extends: base.yaml
+exp_name: p2g_epochs8
+training:
+  epochs: 8
+  early_stop_patience: 3
+seeds: [42]

@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2n_wd005
+training:
+  weight_decay: 0.05
+seeds: [42]

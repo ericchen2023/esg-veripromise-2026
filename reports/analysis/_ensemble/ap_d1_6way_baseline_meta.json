@@ -1,0 +1,59 @@
+{
+  "exps": [
+    "p2_combo_best",
+    "p2_combo_best_u10_pseudo",
+    "p2_combo_best_u10_pseudo_v2",
+    "p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3",
+    "p2_combo_best_u10_pseudo_v3_classw_focal_t4_g3",
+    "p2_combo_best_classw_focal_u6pro"
+  ],
+  "grid_step": 0.1,
+  "equal_score": 0.6822744927162904,
+  "equal_per_task": {
+    "promise_status": 0.93836026331538,
+    "verification_timeline": 0.5413691626196251,
+    "evidence_status": 0.8674188998589563,
+    "evidence_quality": 0.4376325591502391
+  },
+  "final_score": 0.7087102593405183,
+  "final_per_task": {
+    "promise_status": 0.9420289855072463,
+    "verification_timeline": 0.6252999956336389,
+    "evidence_status": 0.8778089887640449,
+    "evidence_quality": 0.4661907607565995
+  },
+  "best_weights_per_task": {
+    "promise_status": [
+      0.1,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.4
+    ],
+    "verification_timeline": [
+      0.1,
+      0.1,
+      0.0,
+      0.4,
+      0.3,
+      0.1
+    ],
+    "evidence_status": [
+      0.3,
+      0.2,
+      0.3,
+      0.0,
+      0.0,
+      0.2
+    ],
+    "evidence_quality": [
+      0.1,
+      0.1,
+      0.0,
+      0.4,
+      0.0,
+      0.4
+    ]
+  }
+}

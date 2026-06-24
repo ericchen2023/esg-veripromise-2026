@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2q_lr5e5
+training:
+  lr: 5.0e-5
+seeds: [42]

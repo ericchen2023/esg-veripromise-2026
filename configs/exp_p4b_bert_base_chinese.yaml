@@ -1,0 +1,13 @@
+extends: base.yaml
+exp_name: p4b_bert_base_chinese
+# Sprint A T2: extend backbone pool — bert-base-chinese (102M)
+# 繼承 combo_best 最佳超參；ensemble 多樣性源（與 macbert 預訓練語料不同）
+model:
+  backbone: bert-base-chinese
+  max_length: 384
+training:
+  lr: 3.0e-5
+  use_class_weight: false
+  batch_size: 8
+  grad_accum: 2
+seeds: [42]

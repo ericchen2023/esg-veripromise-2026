@@ -1,0 +1,6 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2ae_msd5
+# Multi-Sample Dropout K=5 (averages logits from 5 dropout passes per task head).
+model:
+  msd_k: 5
+seeds: [42]

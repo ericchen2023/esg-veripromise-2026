@@ -1,0 +1,9 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_u6_bt
+# U6 / B4 — back-translation augmentation (zh->en->zh via NLLB-200-distilled-600M)
+# Augmented pool targets T2 minority (within_2_years x3) and T4 minority
+# (Misleading x5, Not Clear x1); only injected into train folds whose source
+# sample is in the train index. Validation/OOF never see augmented samples.
+data:
+  augment_path: data/processed/u6_backtrans.json
+seeds: [42]

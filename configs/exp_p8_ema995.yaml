@@ -1,0 +1,11 @@
+extends: exp_p2_combo_v3.yaml
+exp_name: p8_ema995
+# Sprint B / U2: warm-start EMA on combo_v3 to provide a SMOOTH variant
+# alongside the existing peaky seed=42 member.
+# Phase 5 X1 burned us with decay=0.999 on ~500-step training (collapsed to 0.473);
+# fix per ML-lessons rule: decay <= 0.99 with shadow warm-start. We use 0.995 which
+# given 5 epochs * ~50 steps/epoch ~= 250 update steps gives effective half-life ~138
+# steps -- enough to track training dynamics without lagging.
+training:
+  ema_decay: 0.995
+seeds: [42]

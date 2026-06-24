@@ -1,0 +1,5 @@
+extends: base.yaml
+exp_name: p2d_pool_cls
+model:
+  pooling: cls
+seeds: [42]

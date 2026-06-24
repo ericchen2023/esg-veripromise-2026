@@ -1,0 +1,7 @@
+extends: exp_p2_combo_best_u10_pseudo_v2.yaml
+exp_name: p2_combo_best_u10_pseudo_v2_tv
+# Phase 41 — retrain on combined train+val (≈2000 rows) for final submission.
+# Stage A: U10 v2 pseudo (3,904 rows) + official combined; Stage B: combined only.
+seeds: [42]
+data:
+  csv_path: data/processed/train_val_combined.csv

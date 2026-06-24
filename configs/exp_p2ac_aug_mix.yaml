@@ -1,0 +1,11 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2ac_aug_mix
+# Token-level mix: mask 8% + swap 3% + delete 3%, 50% per sample.
+training:
+  augment:
+    aug_prob: 0.5
+    mask_ratio: 0.08
+    swap_ratio: 0.03
+    delete_ratio: 0.03
+    aug_seed: 1234
+seeds: [42]

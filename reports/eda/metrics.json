@@ -1,0 +1,51 @@
+{
+  "source": "data/raw/vpesg4k_train_1000 V1.csv",
+  "n_samples": 1000,
+  "label_distribution": {
+    "promise_status": {
+      "Yes": 814,
+      "No": 186
+    },
+    "verification_timeline": {
+      "already": 366,
+      "within_2_years": 13,
+      "between_2_and_5_years": 238,
+      "longer_than_5_years": 197,
+      "N/A": 186
+    },
+    "evidence_status": {
+      "Yes": 677,
+      "No": 137,
+      "N/A": 186
+    },
+    "evidence_quality": {
+      "Clear": 552,
+      "Not Clear": 124,
+      "Misleading": 1,
+      "N/A": 323
+    }
+  },
+  "constraint_violations": {
+    "promise_no_but_t2_not_na": 0,
+    "promise_no_but_t3_not_na": 0,
+    "promise_no_but_t4_not_na": 0,
+    "evidence_no_but_t4_not_na": 0
+  },
+  "text_length": {
+    "min": 35,
+    "p25": 131.0,
+    "median": 184.5,
+    "mean": 208.434,
+    "p75": 257.0,
+    "p95": 413.5499999999995,
+    "max": 816,
+    "over_256": 256,
+    "over_512": 17
+  },
+  "company": {
+    "n_unique_companies": 50,
+    "max_samples_per_company": 45,
+    "median_samples_per_company": 19.5,
+    "companies_with_ge_5_samples": 48
+  }
+}

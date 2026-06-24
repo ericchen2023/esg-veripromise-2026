@@ -1,0 +1,17 @@
+extends: exp_p3_large_lr2e5.yaml
+exp_name: p10_large_focal_fgm
+# Phase 14 / N1 — Sprint C 結構性多樣化第 1 員
+# 動機：現任 v11 16-way pool 已收斂於 macbert-base 同源變體；
+#       p3_large_lr2e5（純 large baseline）入池但孤立。
+#       將 combo_v2 Wave A/B 贏家（Focal-T4 γ=2 + FGM eps=1）疊到 large 上，
+#       目標產出「large × combo」雜交品種，預期單模 ≥ 0.66 即可入池，
+#       為 v12 hillclimb 提供首個非 base-family 的多樣化候選。
+# 跳過 Wave C：
+#   - R-Drop α=0.5：2× forward pass，8GB 顯存對 large 風險高
+#   - MSD K=5：5× dropout 計算開銷大
+# 參數沿用 p3_large_lr2e5 的 lr=2e-5 / batch=4 / grad_accum=4 / max_len=384
+training:
+  focal_tasks: [evidence_quality]
+  focal_gamma: 2.0
+  fgm_eps: 1.0
+seeds: [42]

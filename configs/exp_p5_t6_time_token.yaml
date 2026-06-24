@@ -1,0 +1,15 @@
+extends: base.yaml
+exp_name: p5_t6_time_token
+# Sprint B / T6: prepend deterministic time-token hint to text
+# (regex-extracts max year, computes delta vs 2025, buckets into T2 classes)
+# Inherits combo_best hyperparams (no_classw + maxlen384 + lr3e5)
+data:
+  text_transform: time_tokens
+training:
+  lr: 3.0e-5
+  use_class_weight: false
+  batch_size: 8
+  grad_accum: 2
+model:
+  max_length: 384
+seeds: [42]

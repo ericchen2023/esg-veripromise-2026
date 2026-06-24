@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2j_warmup020
+training:
+  warmup_ratio: 0.20
+seeds: [42]

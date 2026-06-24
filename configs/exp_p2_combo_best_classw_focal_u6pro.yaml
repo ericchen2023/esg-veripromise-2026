@@ -1,0 +1,12 @@
+extends: exp_p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3.yaml
+exp_name: p2_combo_best_classw_focal_u6pro
+# Phase 36 (§F item 5) — Reuse the Phase-33 best recipe (class-weighted CE on
+# T1/T2/T3 + Focal γ=3.0 on T4, U10 v2 pseudo corpus 3,904 rows) and add the
+# U6-pro back-translation augmentation pool (NLLB-200-distilled-600M, 2 pivots
+# en/ja × 3 temperatures, ESG-glossary-aware filter + post-correction, 109 ESG
+# terms, char-only ChrF + per-source top-k selection). Aug pool: 434 records
+# from 485 minority-class sources (T2 within_2y/longer_5y + T4 Misleading/NotClear),
+# injected per-fold by `_source_id` so it never leaks into val/OOF, used by
+# both stage A and stage B train pools.
+data:
+  augment_path: data/processed/u6_pro/u6_backtrans_pro.json

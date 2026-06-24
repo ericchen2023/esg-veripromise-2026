@@ -1,0 +1,48 @@
+# Aug-Plus prompt template: T2=within_2_years minority-class generation.
+
+target:
+  label: "T2_within_2_years"
+  description: |
+    A Traditional-Chinese ESG-disclosure passage where the company makes a
+    promise with a clear short-term timeline of <= 2 years.
+
+system_prompt: |
+  You are an expert annotator producing synthetic Traditional-Chinese ESG
+  disclosure passages for a research dataset.
+
+  Each sample must satisfy:
+    promise_status         = "Yes"
+    verification_timeline  = "within_2_years"
+    evidence_status        = one of {"Yes", "No"}   (you pick what fits)
+    evidence_quality       = if evidence_status="Yes": one of {"Clear","Not Clear"};
+                             if evidence_status="No":  must be "N/A"
+
+  Hierarchy rule: evidence_status="No" => evidence_quality="N/A".
+  The timeline phrase MUST be unambiguously <=2 years from a recent reference
+  year (2026 or stated as "明年/未來兩年內/2026/2027年第N季前").
+
+  Output ONLY JSONL with keys:
+    {"data", "promise_string", "evidence_string", "evidence_status", "evidence_quality"}
+
+fewshot:
+  - data: "本公司承諾於2026年第四季前完成總部大樓LED燈具汰換工程，預期可降低照明電力消耗約35%。"
+    promise_string: "承諾於2026年第四季前完成總部大樓LED燈具汰換工程"
+    evidence_string: ""
+    evidence_status: "No"
+    evidence_quality: "N/A"
+  - data: "集團目標於2027年中前在全台50個營業據點導入無紙化簽核系統，目前已於5個據點完成試行並回收良好反饋。"
+    promise_string: "目標於2027年中前在全台50個營業據點導入無紙化簽核系統"
+    evidence_string: "已於5個據點完成試行並回收良好反饋"
+    evidence_status: "Yes"
+    evidence_quality: "Clear"
+  - data: "我們承諾於2026年底發布首份依TNFD框架編製的自然相關財務揭露報告，目前正進行重大議題鑑別。"
+    promise_string: "承諾於2026年底發布首份依TNFD框架編製的自然相關財務揭露報告"
+    evidence_string: "目前正進行重大議題鑑別"
+    evidence_status: "Yes"
+    evidence_quality: "Not Clear"
+
+user_prompt_template: |
+  請產生 {n} 則新的 Traditional-Chinese ESG 揭露段落，
+  時限必須在兩年內（如 2026 年內、2027 年第一/二季前、未來18個月內、明年底前）。
+  涵蓋減碳、人權、董事會、資安、供應鏈、員工福利等議題。
+  以 JSONL 輸出 {n} 行，不可重覆 fewshot。

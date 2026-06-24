@@ -1,0 +1,7 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_tv
+# Phase 41 — retrain on combined train+val (≈2000 rows) for final submission.
+# Single seed 42 only; 5-fold CV retained for AP-D5 ensemble re-search.
+seeds: [42]
+data:
+  csv_path: data/processed/train_val_combined.csv

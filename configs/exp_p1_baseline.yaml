@@ -1,0 +1,13 @@
+extends: base.yaml
+exp_name: p1_baseline_macbert_base
+
+model:
+  backbone: hfl/chinese-macbert-base
+  max_length: 256
+
+training:
+  epochs: 5
+  batch_size: 16
+  lr: 2.0e-5
+
+seeds: [42, 2024, 20260417]

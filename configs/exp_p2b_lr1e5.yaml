@@ -1,0 +1,5 @@
+extends: base.yaml
+exp_name: p2b_lr1e5
+training:
+  lr: 1.0e-5
+seeds: [42]

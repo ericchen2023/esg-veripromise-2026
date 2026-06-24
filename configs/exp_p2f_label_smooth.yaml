@@ -1,0 +1,5 @@
+extends: base.yaml
+exp_name: p2f_label_smooth
+training:
+  label_smoothing: 0.05
+seeds: [42]

@@ -1,0 +1,7 @@
+extends: exp_p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3.yaml
+exp_name: p2_combo_best_u10_pseudo_v2_classw_focal_t4_g3_tv
+# Phase 41 — retrain on combined train+val (≈2000 rows) for final submission.
+# Class-weighted CE (T1/T2/T3) + Focal γ=3.0 (T4), U10 v2 pseudo.
+seeds: [42]
+data:
+  csv_path: data/processed/train_val_combined.csv

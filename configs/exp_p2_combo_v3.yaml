@@ -1,0 +1,16 @@
+extends: exp_p2_combo_v2.yaml
+exp_name: p2_combo_v3
+# Stacks two of the four Wave C techniques on top of combo_v2:
+#   + R-Drop alpha=0.5  (least weak Wave C member: -0.0021 single, +ensemble T3)
+#   + Multi-Sample Dropout K=5  (least weak Wave C member: -0.0011 single, +ensemble T1)
+# Skipped Wave C members:
+#   - token augmentation (mask/swap/delete) — duplicates with R-Drop's perturbation role
+#     and showed largest single-model degradation (-0.0044 / -0.0049)
+training:
+  focal_tasks: [evidence_quality]
+  focal_gamma: 2.0
+  fgm_eps: 1.0
+  rdrop_alpha: 0.5
+model:
+  msd_k: 5
+seeds: [42, 2024, 20260417]

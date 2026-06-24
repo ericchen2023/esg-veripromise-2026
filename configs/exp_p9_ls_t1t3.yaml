@@ -1,0 +1,13 @@
+extends: exp_p2_combo_v3.yaml
+exp_name: p9_ls_t1t3
+# Sprint B / U4: per-task Label Smoothing fix. Phase 5 X2 found that uniform LS
+# across all tasks crashes T4 macro (rare class "Misleading" support=1 gets pushed
+# toward uniform). Apply ONLY on T1 (binary, balanced) and T3 (binary, balanced)
+# where calibration helps without harming rare-class recall on T2/T4.
+training:
+  label_smoothing:
+    promise_status: 0.05
+    verification_timeline: 0.0
+    evidence_status: 0.05
+    evidence_quality: 0.0
+seeds: [42]

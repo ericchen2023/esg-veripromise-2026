@@ -1,0 +1,76 @@
+project_name: vp_esg_2026
+data:
+  csv_path: data/raw/vpesg4k_train_1000 V1.csv
+  json_path: data/raw/vpesg4k_train_1000 V1.json
+  text_field: data
+  label_fields:
+    promise_status: ["Yes", "No"]
+    verification_timeline: ["already", "within_2_years", "between_2_and_5_years", "longer_than_5_years", "N/A"]
+    evidence_status: ["Yes", "No", "N/A"]
+    evidence_quality: ["Clear", "Not Clear", "Misleading", "N/A"]
+  field_weights:
+    promise_status: 0.20
+    verification_timeline: 0.15
+    evidence_status: 0.30
+    evidence_quality: 0.35
+  positive_labels:
+    promise_status: "Yes"
+    evidence_status: "Yes"
+  group_field: company
+
+split:
+  type: stratified_kfold
+  n_splits: 5
+  # NOTE (Phase 1 reproducibility hardening, 2026-05-21):
+  #   Stratification key intentionally covers only T1 (promise_status) + T3
+  #   (evidence_status). T2 (verification_timeline) and T4 (evidence_quality)
+  #   are NOT in the key because the official 1,000-row training set has
+  #   support=13 for T2 'within_2_years' and support=1 for T4 'Misleading',
+  #   which cannot be evenly distributed across 5 folds anyway. Changing this
+  #   key invalidates every committed OOF/ckpt and the AP-D4 = 0.71608 result;
+  #   any future stratification upgrade MUST be paired with a full retrain of
+  #   the active stack and a Phase >= 40 ablation. See MASTER_PLAN §20.3 and
+  #   data/processed/folds/seed42.json (canonical fold snapshot).
+  stratify_fields: [promise_status, evidence_status]
+  shuffle: true
+  # Canonical fold snapshot for the current stratify config (committed for
+  # Phase 1 reproducibility). Train scripts continue to regenerate folds via
+  # sklearn StratifiedKFold(seed=42); ``verify_canonical_folds`` cross-checks
+  # the regenerated assignments against this file as a tripwire.
+  canonical_folds_seed42: data/processed/folds/seed42.json
+
+model:
+  backbone: hfl/chinese-macbert-base
+  max_length: 256
+  dropout: 0.1
+  pooling: cls_mean
+
+training:
+  epochs: 5
+  batch_size: 16
+  grad_accum: 1
+  lr: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.10
+  scheduler: cosine
+  grad_clip: 1.0
+  label_smoothing: 0.0
+  use_amp: true
+  use_class_weight: true
+  task_loss_weights:
+    promise_status: 1.0
+    verification_timeline: 1.0
+    evidence_status: 1.0
+    evidence_quality: 1.0
+  early_stop_patience: 2
+  ema:
+    enable: false
+    decay: 0.999
+
+seeds: [42]
+
+runtime:
+  num_workers: 2
+  pin_memory: true
+  log_every: 50
+  save_oof: true

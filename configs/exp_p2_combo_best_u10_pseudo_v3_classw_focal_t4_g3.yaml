@@ -1,0 +1,20 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_u10_pseudo_v3_classw_focal_t4_g3
+# Phase 33+ stem #5 — Class-weighted CE on T1/T2/T3 + Focal γ=3.0 on T4,
+# trained on the U10 v3 pseudo-labelled corpus (3110 admitted rows, expanded
+# from 9657 v3 candidates with relaxed extraction filters).
+# v3 pseudo set still has within_2_years=0 admitted (teacher confidence too high
+# for that class), but the 3110 row diversity + class-weighted training should
+# add ensemble decorrelation against stem #4 (which used v2 pseudo set).
+# Inherits all other settings: lr=3e-5, max_len=384, bs=8/ga=2, 5 folds.
+data:
+  pseudo_csv_path: data/processed/u10/pseudo_labels_v3.csv
+pseudo:
+  min_confidence: 0.45
+  max_pseudo: 2000
+  stage_a_epochs: 4
+  stage_b_epochs: 3
+training:
+  use_class_weight: true
+  focal_tasks: [evidence_quality]
+  focal_gamma: 3.0

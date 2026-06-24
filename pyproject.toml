@@ -1,0 +1,22 @@
+[project]
+name = "vp-esg-2026"
+version = "0.1.0"
+description = "VeriPromise ESG 2026 Competition - Enterprise Pipeline"
+requires-python = ">=3.10,<3.12"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

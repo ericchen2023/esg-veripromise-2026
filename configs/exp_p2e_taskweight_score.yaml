@@ -1,0 +1,9 @@
+extends: base.yaml
+exp_name: p2e_taskweight_score
+training:
+  task_loss_weights:
+    promise_status: 0.20
+    verification_timeline: 0.15
+    evidence_status: 0.30
+    evidence_quality: 0.35
+seeds: [42]

@@ -1,0 +1,9 @@
+extends: exp_p2_combo_v3.yaml
+exp_name: p7_focal_g3
+# Phase 12 — Sprint B / T7: 在 combo_v3 (FGM + Focal-T4 g=2.0 + R-Drop 0.5 + MSD K=5) 之上
+# 將 Focal gamma 由 2.0 提升至 3.0，加大對 T4 (evidence_quality, macro-6) 困難樣本權重，
+# 預期單模 T4 macro 微升或結構改變 → 提供 ensemble 的 T4 多樣性互補。
+training:
+  focal_tasks: [evidence_quality]
+  focal_gamma: 3.0
+seeds: [42]

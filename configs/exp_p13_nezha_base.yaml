@@ -1,0 +1,9 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p13_nezha_base
+# C1 / N3 — new backbone diversification
+# Switches macbert-base → NeZha-base (peterchou/nezha-chinese-base).
+# Inherits combo_best hyperparams (lr 3e-5, batch=8, max_len=384, no class weight).
+# Single seed=42 to keep cost bounded; admission via joint hillclimb v17 if score >= 0.66.
+model:
+  backbone: peterchou/nezha-chinese-base
+seeds: [42]

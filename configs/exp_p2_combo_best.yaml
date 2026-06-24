@@ -1,0 +1,11 @@
+extends: base.yaml
+exp_name: p2_combo_best
+# Phase 2 winners stack: no_classw (+0.0161) + maxlen384 (+0.0132) + lr3e5 (+0.0079)
+training:
+  lr: 3.0e-5
+  use_class_weight: false
+  batch_size: 8
+  grad_accum: 2
+model:
+  max_length: 384
+seeds: [42, 2024, 20260417]

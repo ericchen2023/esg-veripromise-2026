@@ -1,0 +1,11 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2ab_aug_mask10
+# Token-level data augmentation: per-sample 50% chance, mask 10% of real tokens.
+training:
+  augment:
+    aug_prob: 0.5
+    mask_ratio: 0.10
+    swap_ratio: 0.0
+    delete_ratio: 0.0
+    aug_seed: 1234
+seeds: [42]

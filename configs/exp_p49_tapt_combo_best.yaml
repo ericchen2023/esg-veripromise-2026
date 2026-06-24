@@ -1,0 +1,11 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p49_tapt_combo_best
+# Phase 49 — TAPT: combo_best recipe on the domain-adapted (continued-MLM)
+# macbert encoder. Only change vs combo_best is the backbone source dir.
+# Trained on the 5-fold CV of the combined 2000-row labeled set for the
+# admission-gate T4 OOF check (single seed 42).
+seeds: [42]
+model:
+  backbone: outputs/tapt/macbert_esg
+data:
+  csv_path: data/processed/train_val_combined.csv

@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2w_fgm10
+training:
+  fgm_eps: 1.0
+seeds: [42]

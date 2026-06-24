@@ -1,0 +1,14 @@
+extends: base.yaml
+exp_name: p4c_xlm_roberta_base
+# Sprint A T3: extend backbone pool — xlm-roberta-base (278M)
+# 多語料預訓練；T2 時間語意 (already/within_2_years 等) 可能受益
+# 繼承 combo_best 最佳超參；單 seed=42
+model:
+  backbone: xlm-roberta-base
+  max_length: 384
+training:
+  lr: 2.0e-5  # XLM-R 一般用較小 lr (paper 建議 ≤ 2e-5)
+  use_class_weight: false
+  batch_size: 8
+  grad_accum: 2
+seeds: [42]

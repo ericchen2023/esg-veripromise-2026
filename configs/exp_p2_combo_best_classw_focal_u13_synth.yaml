@@ -1,0 +1,29 @@
+extends: exp_p2_combo_best_classw_focal_u6pro.yaml
+exp_name: p2_combo_best_classw_focal_u6pro_u13synth
+# Phase 37 (§A) — On top of the Phase 36 best recipe (class-weighted CE on
+# T1/T2/T3 + Focal γ=3.0 on T4, U10 v2 pseudo 3,904 rows, U6-pro back-trans 434
+# rows), add U13 LLM-synthesised minority-class corpus (~300 rows targeting
+# T2 within_2y / longer_5y / T4 Misleading / Not Clear / T1=No).
+#
+# Officially authorised: "加入自己查詢和標註的資料算是資料擴增，僅主辦方提供之
+# 測試資料集和最後參賽者上傳的預測結果絕對不能有人工介入。"
+#
+# Data sources composed by train_pseudo_kfold:
+#   - vpesg4k_train_1000 V1.csv      (1,000 official; folds drive val/OOF)
+#   - data/processed/u10/pseudo_labels_v3.csv  (Stage A pseudo, gated by conf)
+#   - data/processed/u6_pro/u6_backtrans_pro.json  (per-source back-trans aug)
+#   - data/processed/u13/synth_pseudo.csv  ← NEW (LLM-synth minority injection)
+#
+# Synth IDs (300000+) and aug `_source_id` never collide with official IDs (<1000)
+# or U10 pseudo IDs (100000+). All synth rows have confidence_min=0.95 so they
+# pass the default 0.8 gate but stay distinguishable from gold (1.0).
+data:
+  # Inherit augment_path from parent (U6-pro back-translation pool)
+  # Override pseudo_csv_path to the merged U10+U13 corpus.
+  pseudo_csv_path: data/processed/u13/u10_v3_plus_synth.csv
+pseudo:
+  min_confidence: 0.90   # admit U13 synth (0.95) and gold U10 (≥0.95)
+  max_pseudo: 4400       # ~3,904 U10 + ~300 U13 + headroom
+train:
+  stage_a_epochs: 2      # warm on pseudo+real
+  stage_b_epochs: 3      # finetune on real-only (always done in parent recipe)

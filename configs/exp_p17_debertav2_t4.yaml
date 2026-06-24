@@ -1,0 +1,24 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p17_debertav2_t4
+# Phase 48 strongest candidate (MASTER_PLAN §58.13). DeBERTa-v2 disentangled
+# attention is the strongest BERT-family encoder for nuanced semantic
+# distinctions (ideal for T4 Clear/NotClear/Misleading). REQUIRES one-time
+# download: run `python scratch/p48_download_deberta.py` first (lifts offline
+# flag once, falls back to roberta-large if download fails). Same T4 focus +
+# admission gate (T4 OOF >= 0.48).
+data:
+  csv_path: data/processed/train_val_combined.csv   # combined 2000 for OOF alignment
+model:
+  backbone: IDEA-CCNL/Erlangshen-DeBERTa-v2-320M-Chinese
+  max_length: 512
+  pooling: cls_mean
+training:
+  lr: 1.2e-5
+  batch_size: 2
+  grad_accum: 8
+  epochs: 5
+  early_stop_patience: 2
+  use_class_weight: false
+  focal_tasks: [evidence_quality]
+  focal_gamma: 2.0
+seeds: [42]

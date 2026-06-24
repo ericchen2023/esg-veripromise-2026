@@ -1,0 +1,5 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2m_wd0001
+training:
+  weight_decay: 0.001
+seeds: [42]

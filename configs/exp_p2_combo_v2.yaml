@@ -1,0 +1,10 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_v2
+# Stacks Phase 2 Wave A+B winners on top of combo_best:
+#   + Focal Loss on T4 (gamma=2.0)         delta seed=42 = +0.00275
+#   + FGM adversarial training (eps=1.0)   delta seed=42 = +0.00156
+training:
+  focal_tasks: [evidence_quality]
+  focal_gamma: 2.0
+  fgm_eps: 1.0
+seeds: [42, 2024, 20260417]

@@ -1,0 +1,21 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p16_electralarge_nofocal
+# Phase 48 iteration 2 (MASTER_PLAN 58.13). p15 (roberta-large + focal T4)
+# FAILED the T4 admission gate (single T4 0.431 < existing best 0.450) — focal
+# historically hurts T4 here and the 326M model overfit the tiny 4-class signal.
+# p16 isolates the ARCHITECTURE axis: ELECTRA discriminative pretraining,
+# PLAIN recipe (NO focal, matching the winning combo_best), maxlen 512.
+data:
+  csv_path: data/processed/train_val_combined.csv   # combined 2000 for OOF alignment
+model:
+  backbone: hfl/chinese-electra-180g-large-discriminator
+  max_length: 512
+  pooling: cls_mean
+training:
+  lr: 1.0e-5               # electra-large is lr-sensitive; lower than roberta
+  batch_size: 2
+  grad_accum: 8
+  epochs: 5
+  early_stop_patience: 2
+  use_class_weight: false
+seeds: [42]

@@ -1,0 +1,10 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p13_ernie_base
+# C1 / N3 — ERNIE-3.0-base-zh fallback (NeZha loaded as plain BertModel,
+#   relative position embeddings discarded → fold0 plateau 0.549, abandoned).
+# ERNIE 3.0 base is a clean BertModel (no relative position) so loads cleanly,
+#   provides Baidu vocabulary diversification vs HFL macbert/roberta-wwm pool.
+# Inherits combo_best hyperparams; single seed=42; admission ≥ 0.66.
+model:
+  backbone: nghuyong/ernie-3.0-base-zh
+seeds: [42]

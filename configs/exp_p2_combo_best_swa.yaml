@@ -1,0 +1,9 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_swa
+# U3 / B1 — SWA over last 3 epochs of p2_combo_best (macbert-base, max_len=384,
+# batch=8, grad_accum=2, lr=3e-5, 5 epochs total). Saves swa_epoch{3,4,5}.pt
+# per fold; the aggregator (src/tools/u3_swa_aggregate.py) averages them and
+# re-evaluates OOF. Single seed=42 for time budget; if SWA helps, can extend.
+training:
+  swa_last_k: 3
+seeds: [42]

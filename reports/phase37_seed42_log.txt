@@ -1,0 +1,73 @@
+[run] exp=p2_combo_best_aug_plus mode=pseudo_two_stage
+[data] official=1000 pseudo=2000 from data/processed/aug_plus/aug_plus_v1_with_u10v2.csv
+[u6] loaded 434 augmented records from data/processed/u6_pro/u6_backtrans_pro.json
+
+=== seed=42 fold=1/5 official_train=800 pseudo=2000 val=200 ===
+[u6] fold=0 injected 355 BT augmented samples
+[fold=0 seed=42] epoch 1/4 loss=1.9105 score=0.59822 (195.5s)
+[fold=0 seed=42] epoch 2/4 loss=0.9497 score=0.62825 (198.9s)
+[fold=0 seed=42] epoch 3/4 loss=0.4946 score=0.64127 (148.3s)
+[fold=0 seed=42] epoch 4/4 loss=0.2523 score=0.65347 (101.8s)
+[fold=0 seed=42] epoch 1/3 loss=0.5682 score=0.65105 (53.3s)
+[fold=0 seed=42] epoch 2/3 loss=0.2858 score=0.64906 (51.9s)
+[fold=0 seed=42] epoch 3/3 loss=0.0923 score=0.65278 (66.3s)
+
+=== seed=42 fold=2/5 official_train=800 pseudo=2000 val=200 ===
+[u6] fold=1 injected 339 BT augmented samples
+[fold=1 seed=42] epoch 1/4 loss=1.8327 score=0.56140 (100.8s)
+[fold=1 seed=42] epoch 2/4 loss=0.8695 score=0.60202 (100.4s)
+[fold=1 seed=42] epoch 3/4 loss=0.4639 score=0.61969 (105.6s)
+[fold=1 seed=42] epoch 4/4 loss=0.2353 score=0.63005 (107.0s)
+[fold=1 seed=42] epoch 1/3 loss=0.6133 score=0.64538 (52.5s)
+[fold=1 seed=42] epoch 2/3 loss=0.2844 score=0.65780 (50.5s)
+[fold=1 seed=42] epoch 3/3 loss=0.0987 score=0.65063 (49.6s)
+
+=== seed=42 fold=3/5 official_train=800 pseudo=2000 val=200 ===
+[u6] fold=2 injected 342 BT augmented samples
+[fold=2 seed=42] epoch 1/4 loss=1.8890 score=0.63594 (102.0s)
+[fold=2 seed=42] epoch 2/4 loss=0.9549 score=0.65646 (102.4s)
+[fold=2 seed=42] epoch 3/4 loss=0.5006 score=0.63890 (103.3s)
+[fold=2 seed=42] epoch 4/4 loss=0.2817 score=0.66050 (102.7s)
+[fold=2 seed=42] epoch 1/3 loss=0.5845 score=0.64268 (53.9s)
+[fold=2 seed=42] epoch 2/3 loss=0.2774 score=0.68815 (49.9s)
+[fold=2 seed=42] epoch 3/3 loss=0.0998 score=0.66235 (52.5s)
+
+=== seed=42 fold=4/5 official_train=800 pseudo=2000 val=200 ===
+[u6] fold=3 injected 344 BT augmented samples
+[fold=3 seed=42] epoch 1/4 loss=1.9161 score=0.58278 (99.8s)
+[fold=3 seed=42] epoch 2/4 loss=0.9629 score=0.65943 (103.2s)
+[fold=3 seed=42] epoch 3/4 loss=0.5373 score=0.67404 (104.3s)
+[fold=3 seed=42] epoch 4/4 loss=0.2857 score=0.67967 (104.1s)
+[fold=3 seed=42] epoch 1/3 loss=0.6439 score=0.67104 (52.5s)
+[fold=3 seed=42] epoch 2/3 loss=0.3423 score=0.68438 (50.4s)
+[fold=3 seed=42] epoch 3/3 loss=0.1408 score=0.67338 (51.4s)
+
+=== seed=42 fold=5/5 official_train=800 pseudo=2000 val=200 ===
+[u6] fold=4 injected 356 BT augmented samples
+[fold=4 seed=42] epoch 1/4 loss=1.8143 score=0.62680 (104.3s)
+[fold=4 seed=42] epoch 2/4 loss=0.9649 score=0.60916 (101.7s)
+[fold=4 seed=42] epoch 3/4 loss=0.5159 score=0.65040 (110.6s)
+[fold=4 seed=42] epoch 4/4 loss=0.2606 score=0.64377 (106.0s)
+[fold=4 seed=42] epoch 1/3 loss=0.6505 score=0.66518 (53.0s)
+[fold=4 seed=42] epoch 2/3 loss=0.2644 score=0.65320 (53.1s)
+[fold=4 seed=42] epoch 3/3 loss=0.0936 score=0.63776 (52.2s)
+
+============================================================
+[exp=p2_combo_best_aug_plus] elapsed=3197.5s
+
+Per-seed weighted_score statistics:
+          mean       std       min       max
+seed                                        
+42    0.669659  0.015843  0.652783  0.688151
+
+Overall: mean=0.66966 std=0.01584  (n=5)
+
+Per-task means:
+  promise_status            = 0.9353  (w=0.2)
+  verification_timeline     = 0.5182  (w=0.15)
+  evidence_status           = 0.8562  (w=0.3)
+  evidence_quality          = 0.4229  (w=0.35)
+  weighted reconstruction = 0.66966
+
+[wrote] reports\experiments\p2_combo_best_aug_plus\score_summary.csv
+[wrote] reports\experiments\p2_combo_best_aug_plus\score_summary.json

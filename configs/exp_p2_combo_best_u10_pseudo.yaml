@@ -1,0 +1,12 @@
+﻿extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_u10_pseudo
+# M4 — Pseudo-labeling with u10 corpus (211 admitted rows from 15-ckpt TTA ensemble)
+# Per-task admission already enforced upstream (T1>=0.80, T2>=0.60, T3>=0.70, T4>=0.60).
+# min_confidence = 0.60 keeps all rows (each row's confidence_min equals min of per-task max-probs).
+data:
+  pseudo_csv_path: data/processed/u10/pseudo_labels.csv
+pseudo:
+  min_confidence: 0.60
+  max_pseudo: 500
+  stage_a_epochs: 4
+  stage_b_epochs: 3

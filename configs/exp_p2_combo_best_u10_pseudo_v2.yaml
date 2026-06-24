@@ -1,0 +1,11 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2_combo_best_u10_pseudo_v2
+# M4-v2 — Two-tier pseudo-labeling with u10 v2 corpus (3,904 admitted rows from 15-ckpt baseline ensemble)
+# Per-row confidence already filtered upstream; min_confidence=0.45 covers Tier-2 minority-boost rows.
+data:
+  pseudo_csv_path: data/processed/u10/pseudo_labels_v2.csv
+pseudo:
+  min_confidence: 0.45
+  max_pseudo: 2000
+  stage_a_epochs: 4
+  stage_b_epochs: 3

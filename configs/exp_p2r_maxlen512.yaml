@@ -1,0 +1,8 @@
+extends: exp_p2_combo_best.yaml
+exp_name: p2r_maxlen512
+training:
+  batch_size: 4
+  grad_accum: 4
+model:
+  max_length: 512
+seeds: [42]

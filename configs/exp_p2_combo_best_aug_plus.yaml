@@ -1,0 +1,19 @@
+extends: exp_p2_combo_best_classw_focal_u6pro.yaml
+exp_name: p2_combo_best_aug_plus
+# Aug-Plus (officially-authorised augmentation) — stacks on top of the
+# Phase-36 best recipe (class-weighted CE on T1/T2/T3 + Focal γ=3.0 on T4,
+# U10 v2 pseudo corpus, U6-pro back-translation pool) and additionally
+# consumes the Aug-Plus pool produced by:
+#   1. assets/aug_plus/build_handcrafted_v1.py  → 50 hand-crafted rows
+#   2. scripts/ap_llm_synth.py generate         → LLM-synth rows
+#   3. scripts/ap_quality_gate.py               → SimHash dedup + length filter
+#   4. scripts/ap_llm_synth.py promote          → copies gated CSV here.
+#
+# STATUS: scaffold complete; full-train validation pending (gates 1-5).
+# Smoke run with seed Mock provider yields 95 rows (50 handcraft + 45 mock).
+data:
+  # The trainer (src/train_pseudo_kfold.py) accepts ONE pseudo CSV path.
+  # Aug-Plus is a **minority-class booster** stacked on top of U10 v2.
+  # Run `python scripts/ap_llm_synth.py promote --with-u10` to produce
+  # the merged CSV at the path below (50 AP + 3,904 U10v2 ≈ 3,954 rows).
+  pseudo_csv_path: data/processed/aug_plus/aug_plus_v1_with_u10v2.csv
